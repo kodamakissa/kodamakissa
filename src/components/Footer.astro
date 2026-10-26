@@ -1,0 +1,32 @@
+---
+import contato from '../data/contato.json';
+---
+<footer>
+  <p class="kanji">木霊喫茶</p>
+  <address>{contato.endereco}</address>
+  <p>{contato.horarios}</p>
+  <p><a href={`https://instagram.com/${contato.instagram}`}>@{contato.instagram}</a></p>
+</footer>
+
+<style>
+  footer {
+    padding: 2rem 1rem;
+    background: var(--madeira);
+    color: var(--papel);
+    text-align: center;
+  }
+
+  p, address {
+    margin: 0.25rem 0;
+    font-style: normal;
+  }
+
+  .kanji {
+    font-family: var(--fonte-kanji);
+    font-size: 1.5rem;
+  }
+
+  a {
+    color: inherit;
+  }
+</style>

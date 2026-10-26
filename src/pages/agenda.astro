@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import agenda from '../data/agenda.json';
+---
+<Base title="Agenda · Kodama Kissa">
+  <dl>
+    {agenda.map((item) => (<><dt>{item.dia}</dt><dd>{item.atividade}</dd></>))}
+  </dl>
+</Base>

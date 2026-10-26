@@ -1,0 +1,18 @@
+:root {
+  --musgo: #3E5B3A;
+  --broto: #8FA86A;
+  --madeira: #6B4A2F;
+  --papel: #F2EADB;
+  --laca: #B8392B;
+  --tinta: #23201C;
+
+  --fonte-letreiro: 'Dela Gothic One', sans-serif;
+  --fonte-kanji: 'Shippori Mincho B1', serif;
+  --fonte-texto: 'Zen Kaku Gothic New', sans-serif;
+}
+
+body {
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--fonte-texto);
+}
