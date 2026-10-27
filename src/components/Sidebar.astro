@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import agenda from '../data/agenda.json';
+
+const recentes = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 5);
+---
+<aside>
+  <section class="modulo">
+    <h2 class="modulo-titulo"><a href="/agenda">Agenda</a><span class="rotulo" lang="ja">予定</span></h2>
+    <ul>
+      {agenda.map((item) => (
+        <li><strong>{item.dia}</strong><br />{item.atividade}</li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="modulo">
+    <h2 class="modulo-titulo"><a href="/blog">Posts recentes</a><span class="rotulo" lang="ja">最新記事</span></h2>
+    <ul>
+      {recentes.map((post) => (
+        <li><a href={`/blog/${post.id}`}>{post.data.title}</a></li>
+      ))}
+    </ul>
+  </section>
+</aside>
+
+<style>
+  aside {
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+  }
+
+  .modulo {
+    margin-bottom: 48px;
+  }
+
+  .modulo-titulo {
+    margin: 0 0 20px;
+    font-size: 15px;
+  }
+
+  .modulo-titulo a {
+    color: var(--texto);
+    text-decoration: none;
+  }
+
+  .modulo-titulo a:hover {
+    text-decoration: underline;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    margin-bottom: 0.7em;
+  }
+</style>

@@ -1,18 +1,186 @@
 :root {
-  --musgo: #3E5B3A;
-  --broto: #8FA86A;
-  --madeira: #6B4A2F;
-  --papel: #F2EADB;
   --laca: #B8392B;
-  --tinta: #23201C;
+  --musgo: #3E5B3A;
 
-  --fonte-letreiro: 'Dela Gothic One', sans-serif;
+  --fundo: #FFFFFF;
+  --texto: #222222;
+  --link: #456898;
+  --link-hover: #073472;
+  --borda: #DDDDDD;
+  --apagado: #999999;
+
   --fonte-kanji: 'Shippori Mincho B1', serif;
   --fonte-texto: 'Zen Kaku Gothic New', sans-serif;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --laca: #E0705F;
+    --musgo: #9DB57A;
+
+    --fundo: #1C1B19;
+    --texto: #E6E1D6;
+    --link: #8FB0D8;
+    --link-hover: #B8CFF0;
+    --borda: #3A3833;
+    --apagado: #7A766E;
+  }
 }
 
 body {
-  background: var(--papel);
-  color: var(--tinta);
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
   font-family: var(--fonte-texto);
+  font-size: 1rem;
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+h1, h2, h3 {
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0.7em 0 1em;
+}
+
+a {
+  color: var(--link);
+  transition: color 0.15s;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--laca);
+  color: var(--fundo);
+}
+
+/* Layout — segue o tema "Report" do Hatena Blog */
+
+#container {
+  flex: 1;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 870px;
+  margin: 0 auto;
+  padding: 40px 16px 0;
+}
+
+/* Rótulo em japonês ao lado de títulos */
+.rotulo {
+  margin-left: 0.5em;
+  color: var(--musgo);
+  font-family: var(--fonte-kanji);
+  font-feature-settings: "palt";
+  font-size: 0.75em;
+  font-weight: 400;
+}
+
+#content {
+  display: grid;
+  gap: 48px;
+}
+
+@media (min-width: 820px) {
+  #container {
+    padding: 64px 30px 0;
+  }
+
+  #content {
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 64px;
+  }
+}
+
+/* Entradas do blog */
+
+.entry {
+  margin-bottom: 96px;
+}
+
+.entry-header {
+  margin-bottom: 20px;
+}
+
+.date {
+  display: block;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--borda);
+  color: var(--laca);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.entry-title {
+  margin: 0 0 15px;
+  font-size: 20px;
+}
+
+.entry-title a {
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.entry-content {
+  font-family: var(--fonte-kanji);
+  font-feature-settings: "palt";
+  font-size: 15px;
+  line-height: 1.7;
+  word-break: auto-phrase;
+  line-break: strict;
+}
+
+.entry-content p {
+  text-wrap: pretty;
+}
+
+.entry-content em {
+  font-style: normal;
+  text-emphasis: filled sesame;
+}
+
+.entry-content h2,
+.entry-content h3 {
+  margin: 1em 0 0.5em;
+  border-bottom: 1px dotted var(--apagado);
+  font-family: var(--fonte-texto);
+  line-height: 1.7;
+}
+
+.entry-content h2 {
+  font-size: 150%;
+}
+
+.entry-content h3 {
+  font-size: 140%;
+}
+
+.entry-content img {
+  max-width: 100%;
+}
+
+.entry-content a:visited {
+  color: var(--apagado);
+}
+
+.entry-content blockquote {
+  margin: 1em 0;
+  padding: 10px;
+  border: 1px solid var(--borda);
 }

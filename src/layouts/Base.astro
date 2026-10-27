@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
+import Sidebar from '../components/Sidebar.astro';
 import Footer from '../components/Footer.astro';
 const { title = 'Kodama Kissa' } = Astro.props;
 ---
@@ -11,11 +12,16 @@ const { title = 'Kodama Kissa' } = Astro.props;
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Shippori+Mincho+B1:wght@600&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" />
   </head>
   <body>
-    <header><Nav /></header>
-    <main><slot /></main>
+    <Nav />
+    <div id="container">
+      <div id="content">
+        <main><slot /></main>
+        <Sidebar />
+      </div>
+    </div>
     <Footer />
   </body>
 </html>

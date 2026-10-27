@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import { formatarData } from '../utils/data';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+{posts.map((post) => (
+  <article class="entry">
+    <header class="entry-header">
+      <time class="date" datetime={post.data.date.toISOString()}>
+        {formatarData(post.data.date)}
+      </time>
+      <h2 class="entry-title"><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
+    </header>
+    {post.data.description && <p>{post.data.description}</p>}
+  </article>
+))}

@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import { formatarData } from '../../utils/data';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -11,8 +12,15 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 <Base title={post.data.title}>
-  <article>
-    <h1>{post.data.title}</h1>
-    <Content />
+  <article class="entry">
+    <header class="entry-header">
+      <time class="date" datetime={post.data.date.toISOString()}>
+        {formatarData(post.data.date)}
+      </time>
+      <h1 class="entry-title">{post.data.title}</h1>
+    </header>
+    <div class="entry-content">
+      <Content />
+    </div>
   </article>
 </Base>
